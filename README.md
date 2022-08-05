@@ -22,3 +22,8 @@ npm run build
 ```
 npm run test:unit
 ```
+
+## Screen shot
+```
+The screen shot for the state of progress can found in assets/images/project_progress directory
+```
