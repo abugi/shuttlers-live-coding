@@ -1,6 +1,8 @@
 <script setup>
 import SideBar from '../components/AppSideBar.vue'
-import AppBar from '../components/AppBar.vue';
+import AppBar from '../components/AppBar.vue'
+import ActiveUsersWidget from '../components/ActiveUsersWidget.vue'
+import RecentTransactions from '../components/RecentTransactions.vue'
 
 const countriesData = [
   {
@@ -10,53 +12,60 @@ const countriesData = [
   },
   {
     country: 'india',
-    percentage: 35,
+    percentage: 30,
     flag: 'https://res.cloudinary.com/greeanbrain/image/upload/v1659693016/suburban-sales-automation-assets/india.svg',
   },
   {
     country: 'united kingdom',
-    percentage: 65,
+    percentage: 20,
     flag: 'https://res.cloudinary.com/greeanbrain/image/upload/v1659693016/suburban-sales-automation-assets/gb.svg',
   },
   {
     country: 'australia',
-    percentage: 20,
+    percentage: 10,
     flag: 'https://res.cloudinary.com/greeanbrain/image/upload/v1659693016/suburban-sales-automation-assets/australia.svg',
+  },
+  {
+    country: 'canada',
+    percentage: 10,
+    flag: 'https://res.cloudinary.com/greeanbrain/image/upload/v1659693016/suburban-sales-automation-assets/CA.svg',
   },
 ];
 
 const subs = [
   {
-    name: 'subscription',
-    amount: 148.4,
+    name: 'Subscription',
+    amount: 148.40,
     label: '#2E90FA',
   },
   {
-    name: 'mortgage',
+    name: 'Mortgage',
     amount: 824.28,
     label: '#F79009',
   },
   {
-    name: 'investing',
-    amount: 290.0,
+    name: 'Investing',
+    amount: 290.00,
     label: '#12B76A',
   },
   {
-    name: 'food and dinning',
-    amount: 616.4,
+    name: 'Food and dinning',
+    amount: 614.16,
     label: '#EE46BC',
   },
   {
-    name: 'groceries',
-    amount: 148.4,
+    name: 'Groceries',
+    amount: 642.48,
     label: '#6172F3',
   },
   {
-    name: 'others',
+    name: 'Others',
     amount: 48.44,
     label: '#4E5BA6',
   },
 ];
+
+
 </script>
 
 <template>
@@ -64,47 +73,35 @@ const subs = [
     <SideBar class="flex-shrink-0" />
     <main class="w-full">
       <AppBar />
+      <hr class="mx-8 mb-12" />
 
-      <section class="ml-[32px] flex">
-        <div
-          class="w-1/4 py-5 px-4 rounded-md border border-[#EAECF0] flex-shrink-0 mr-[64px]"
-        >
-          <h2 class="text-[18px] font-medium">Active users right now</h2>
-          <div class="text-[36px] font-semibold">10.8k</div>
-          <div class="mt-5 text-secondary-color">
-            <div
-              v-for="item in countriesData"
-              class="flex items-center w-full pb-5"
-            >
-              <img :src="item.flag" :alt="item.country" />
-              <div class="flex-grow-[1]">
-                <div class="capitalize mx-4 text-sm">
-                  {{ item.country }}
-                </div>
-                <div class="flex items-center text-xs leading-none">
-                  <div class="bg-[#EAECF0] h-2 rounded-full w-full ml-4 mr-3">
-                    <div
-                      class="bg-primary-color h-full rounded-full"
-                      :style="{ width: item.percentage + '%' }"
-                    ></div>
-                  </div>
-                  <div class="flex-shrink-0 text-sm font-medium">
-                    {{ item.percentage }}%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section class="mx-8 flex">
+        <aside class="w-1/4 flex-shrink-0 mr-[64px]">
+            <ActiveUsersWidget :countriesData="countriesData" />
+            <RecentTransactions />
+        </aside>
         <main class="w-full">
           <section>
-            <div class="font-medium text-[18px]">Monthly spending</div>
-            <section class="flex items-start">
-              <div class="w-[224px] h-[224px] bg-gray-200 flex-shrink-0"></div>
-              <div class="w-full grid grid-cols-3 gap-12 ml-20">
+            <div class="flex items-center justify-between pb-[26px] mb-[24px] border-b border-interaction-color">
+                <div class="font-medium text-[18px]">Monthly spending</div>
+                <div class="grid grid-cols-3 text-sm font-medium text-center">
+                    <div class="px-4 py-[10px] border border-interaction-color rounded-l-lg relative flex items-center">
+                        <span class="w-[8px] h-[8px] bg-[#12B76A] rounded-full mr-[9px]"></span>
+                        <span>This month</span>
+                    </div>
+                    <div class="px-4 py-[10px] border-t border-b border-interaction-color">Last month</div>
+                    <div class="px-4 py-[10px] border border-interaction-color rounded-r-lg flex">
+                        <img src="../assets/images/plus-icon.svg" alt="custom" class="mr-2">
+                        <span>Custom</span>
+                    </div>
+                </div>
+            </div>
+            <section class="flex items-center">
+              <div class="w-[224px] h-[224px] bg-gray-200 flex-shrink-0 rounded-full"></div>
+              <div class="w-full grid grid-cols-3 gap-10 ml-12 pr-[181px]">
                 <div v-for="item in subs" class="relative">
-                  <div class="text-xs capitalize">{{ item.name }}</div>
-                  <div class="text-xl font-semibold">${{ item.amount }}</div>
+                  <div class="text-sm leading-loose text-[#667085] font-medium">{{ item.name }}</div>
+                  <div class="text-2xl font-semibold">${{ item.amount }}</div>
                   <div
                     class="w-2 h-2 rounded-full absolute -left-4 top-1"
                     :style="{ backgroundColor: item.label }"
@@ -112,14 +109,22 @@ const subs = [
                 </div>
               </div>
             </section>
-            <section class="flex my-8">
-              <div class="font-medium">Balance over time</div>
-              <div class="flex">
-                <div>month</div>
-                <div>30 days</div>
-                <div>7 days</div>
-              </div>
-            </section>
+            <div class="flex items-center justify-between pb-[26px] mt-[46px] border-b border-interaction-color">
+                <div class="font-medium text-[18px]">Balance over time</div>
+                <div class="grid grid-cols-3 text-sm font-medium text-center">
+                    <div class="px-4 py-[10px] border border-interaction-color rounded-l-lg">
+                        12 months
+                    </div>
+                    <div class="px-4 py-[10px] border-t border-b border-gray-200">30 days</div>
+                    <div class="px-4 py-[10px] border border-interaction-color rounded-r-lg">
+                        <span>7 days</span>
+                    </div>
+                </div>
+            </div>
+          </section>
+
+          <section>
+            chart
           </section>
         </main>
       </section>
