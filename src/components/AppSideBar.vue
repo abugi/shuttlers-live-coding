@@ -39,7 +39,7 @@ const settings = [
 </script>
 
 <template>
-  <main class="bg-primary-color h-screen flex flex-col justify-between px-[24px] pt-[32px] pb-[109px]">
+  <main class="bg-primary-color min-h-screen flex flex-col justify-between px-[24px] pt-[32px] pb-[109px]">
     <div>
       <img src="https://res.cloudinary.com/greeanbrain/image/upload/v1659765331/suburban-sales-automation-assets/logo.svg" alt="shuttlers home" class="cursor-pointer">
       <ul class="mt-[38px]">

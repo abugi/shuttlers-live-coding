@@ -11,7 +11,7 @@ const props = defineProps({
     <div
           class="w-full py-5 px-4 rounded-md border border-[#EAECF0]"
         >
-          <h2 class="text-[18px] font-medium">Active users right now</h2>
+          <h2 class="xl:text-[18px] lg:text-base md:text-base font-medium">Active users right now</h2>
           <div class="text-[36px] font-semibold">10.8k</div>
           <div class="mt-5 text-secondary-color">
             <div
