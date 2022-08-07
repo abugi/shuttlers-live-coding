@@ -16,7 +16,7 @@ const stepTwo = 76
 </script>
 
 <template>
-  <section class="flex items-start">
+  <section class="flex items-start bg-white">
     <SideBar class="xl:inline-flex lg:inline-flex md:hidden hidden flex-shrink-0" />
     <main class="w-full h-screen overflow-y-scroll overscroll-contain">
         <MobileNav class="xl:hidden lg:hidden md:flex flex" />
