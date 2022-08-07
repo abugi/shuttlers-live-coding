@@ -70,7 +70,7 @@ const stepTwo = 76
                            strokeWidth="16"
                            >
                          <p class="text-sm text-[#667085]">Total</p>
-                         <p class="font-semibold text-[24px]">$2,280</p>
+                         <p class="font-semibold text-[30px]">$2,280</p>
                          </radial-progress-bar>
 
                        </div>
